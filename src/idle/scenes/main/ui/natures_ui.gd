@@ -2,6 +2,8 @@ class_name NaturesUI
 extends Control
 
 
+var total_natures : int = 0
+
 var twigs : int = 0
 var twigs_cost : int = 1
 @export var twigs_count_label : Label
@@ -26,7 +28,7 @@ func _on_ready() -> void:
 	
 	
 func send_counts_update() -> void:
-	update_counts.emit(twigs, pebbles, lights)
+	update_counts.emit(total_natures, twigs, pebbles, lights)
 
 
 func _on_twigs_button_pressed() -> void:

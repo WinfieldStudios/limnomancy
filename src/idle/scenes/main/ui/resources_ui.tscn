@@ -8,10 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://2bdrb0ov3dtn" path="res://images/icons/crbnicn.png" id="5_est24"]
 [ext_resource type="Texture2D" uid="uid://cbselt3iwd0ye" path="res://images/icons/foodicon.png" id="8_6iojs"]
 
+[sub_resource type="SystemFont" id="SystemFont_est24"]
+subpixel_positioning = 0
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nagar"]
 load_path = "res://.godot/imported/N2 icon.png-7e77622e5553b7d44baebfd82e6018b0.ctex"
 
-[node name="ResourcesUI" type="Control" unique_id=1844071280 node_paths=PackedStringArray("timerStandard", "timerFast", "timerSlow", "arcanaCountLabel", "sunlightCountLabel", "nitrogenCountLabel", "carbonCountLabel", "oxygenCountLabel", "detritusCountLabel", "foodCountLabel")]
+[node name="ResourcesUI" type="Control" unique_id=1844071280 node_paths=PackedStringArray("timerStandard", "timerFast", "timerSlow", "arcanaCountLabel", "arcanaDeltaAverageLabel", "sunlightCountLabel", "sunlightDeltaAverageLabel", "nitrogenCountLabel", "nitrogenDeltaAverageLabel", "carbonCountLabel", "carbonDeltaAverageLabel", "oxygenCountLabel", "oxygenDeltaAverageLabel", "detritusCountLabel", "detritusDeltaAverageLabel", "foodCountLabel", "foodDeltaAverageLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,12 +26,19 @@ timerStandard = NodePath("TimerStandard")
 timerFast = NodePath("TimerFast")
 timerSlow = NodePath("TimerSlow")
 arcanaCountLabel = NodePath("MarginContainer/VBoxContainer/Arcana/MarginContainer/HBoxContainer/MarginContainer2/Count")
+arcanaDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Arcana/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
 sunlightCountLabel = NodePath("MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer2/Count")
+sunlightDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
 nitrogenCountLabel = NodePath("MarginContainer/VBoxContainer/Nitrogen/MarginContainer/HBoxContainer/MarginContainer2/Count")
+nitrogenDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Nitrogen/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
 carbonCountLabel = NodePath("MarginContainer/VBoxContainer/Carbon/MarginContainer/HBoxContainer/MarginContainer2/Count")
+carbonDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Carbon/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
 oxygenCountLabel = NodePath("MarginContainer/VBoxContainer/Oxygen/MarginContainer/HBoxContainer/MarginContainer2/Count")
+oxygenDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Oxygen/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
 detritusCountLabel = NodePath("MarginContainer/VBoxContainer/Detritus/MarginContainer/HBoxContainer/MarginContainer2/Count")
+detritusDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Detritus/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
 foodCountLabel = NodePath("MarginContainer/VBoxContainer/Food/MarginContainer/HBoxContainer/MarginContainer2/Count")
+foodDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Food/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
 
 [node name="TimerStandard" type="Timer" parent="." unique_id=2085774951]
 wait_time = 6.0
@@ -101,12 +111,30 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Arcana/MarginContainer/HBoxContainer/MarginContainer" unique_id=193960231]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Arcana/MarginContainer/HBoxContainer/MarginContainer" unique_id=1198769559]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Arcana/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=193960231]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_est24")
 theme_override_font_sizes/font_size = 24
 text = "Arcana"
+vertical_alignment = 1
+
+[node name="Delta" type="Label" parent="MarginContainer/VBoxContainer/Arcana/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=9849606]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1.8289685e-06, 0.8226515, 0.38764548, 1)
+theme_override_colors/font_outline_color = Color(0, 0.54525805, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "+0.01"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Arcana/MarginContainer/HBoxContainer" unique_id=1709819619]
@@ -174,12 +202,30 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer" unique_id=686120574]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer" unique_id=1549877678]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=686120574]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_est24")
 theme_override_font_sizes/font_size = 24
 text = "Sunlight"
+vertical_alignment = 1
+
+[node name="Delta" type="Label" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2135563043]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1.8289685e-06, 0.8226515, 0.38764548, 1)
+theme_override_colors/font_outline_color = Color(0, 0.54525805, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "+0.01"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer" unique_id=1486187621]
@@ -247,12 +293,30 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Nitrogen/MarginContainer/HBoxContainer/MarginContainer" unique_id=716576759]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Nitrogen/MarginContainer/HBoxContainer/MarginContainer" unique_id=1077843313]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Nitrogen/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=716576759]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_est24")
 theme_override_font_sizes/font_size = 24
 text = "Nitrogen"
+vertical_alignment = 1
+
+[node name="Delta" type="Label" parent="MarginContainer/VBoxContainer/Nitrogen/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=613074013]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1.8289685e-06, 0.8226515, 0.38764548, 1)
+theme_override_colors/font_outline_color = Color(0, 0.54525805, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "+0.01"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Nitrogen/MarginContainer/HBoxContainer" unique_id=405889903]
@@ -320,12 +384,30 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Carbon/MarginContainer/HBoxContainer/MarginContainer" unique_id=421558318]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Carbon/MarginContainer/HBoxContainer/MarginContainer" unique_id=610474477]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Carbon/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=421558318]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_est24")
 theme_override_font_sizes/font_size = 24
 text = "Carbon"
+vertical_alignment = 1
+
+[node name="Delta" type="Label" parent="MarginContainer/VBoxContainer/Carbon/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=952293832]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1.8289685e-06, 0.8226515, 0.38764548, 1)
+theme_override_colors/font_outline_color = Color(0, 0.54525805, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "+0.01"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Carbon/MarginContainer/HBoxContainer" unique_id=1811765267]
@@ -393,12 +475,30 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Oxygen/MarginContainer/HBoxContainer/MarginContainer" unique_id=1480542789]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Oxygen/MarginContainer/HBoxContainer/MarginContainer" unique_id=1445165399]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Oxygen/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1480542789]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_est24")
 theme_override_font_sizes/font_size = 24
 text = "Oxygen"
+vertical_alignment = 1
+
+[node name="Delta" type="Label" parent="MarginContainer/VBoxContainer/Oxygen/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=349072638]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1.8289685e-06, 0.8226515, 0.38764548, 1)
+theme_override_colors/font_outline_color = Color(0, 0.54525805, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "+0.01"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Oxygen/MarginContainer/HBoxContainer" unique_id=476599061]
@@ -466,12 +566,30 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Detritus/MarginContainer/HBoxContainer/MarginContainer" unique_id=985104863]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Detritus/MarginContainer/HBoxContainer/MarginContainer" unique_id=1043096137]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Detritus/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=985104863]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_est24")
 theme_override_font_sizes/font_size = 24
 text = "Detritus"
+vertical_alignment = 1
+
+[node name="Delta" type="Label" parent="MarginContainer/VBoxContainer/Detritus/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=205720156]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1.8289685e-06, 0.8226515, 0.38764548, 1)
+theme_override_colors/font_outline_color = Color(0, 0.54525805, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "+0.01"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Detritus/MarginContainer/HBoxContainer" unique_id=1695004330]
@@ -539,12 +657,29 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Food/MarginContainer/HBoxContainer/MarginContainer" unique_id=2129625407]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Food/MarginContainer/HBoxContainer/MarginContainer" unique_id=451908334]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Food/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2129625407]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_est24")
 theme_override_font_sizes/font_size = 24
 text = "Food"
+vertical_alignment = 1
+
+[node name="Delta" type="Label" parent="MarginContainer/VBoxContainer/Food/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1409302209]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1.8289685e-06, 0.8226515, 0.38764548, 1)
+theme_override_colors/font_outline_color = Color(0, 0.54525805, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "+0.01"
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Food/MarginContainer/HBoxContainer" unique_id=1820992485]

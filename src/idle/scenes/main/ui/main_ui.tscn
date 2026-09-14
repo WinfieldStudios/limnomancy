@@ -88,7 +88,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs" unique_id=1612348767]
+[node name="SpellTabsButtons" type="VBoxContainer" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs" unique_id=1612348767]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,11 +96,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/VBoxContainer" unique_id=41388218]
+[node name="Natures" type="Control" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/SpellTabsButtons" unique_id=1817762736]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/VBoxContainer/Control" unique_id=1970395314]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/SpellTabsButtons/Natures" unique_id=1206104571]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="NaturesButton" type="Button" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/SpellTabsButtons/Natures/MarginContainer" unique_id=772950739]
+layout_mode = 2
+text = "Natures"
+
+[node name="Organisms" type="Control" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/SpellTabsButtons" unique_id=41388218]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/SpellTabsButtons/Organisms" unique_id=1970395314]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,29 +132,9 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="OrganismsButton" type="Button" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/VBoxContainer/Control/MarginContainer" unique_id=1818293880]
+[node name="OrganismsButton" type="Button" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/SpellTabsButtons/Organisms/MarginContainer" unique_id=1818293880]
 layout_mode = 2
 text = "Organisms"
-
-[node name="Control2" type="Control" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/VBoxContainer" unique_id=1817762736]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/VBoxContainer/Control2" unique_id=1206104571]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 32
-
-[node name="NaturesButton" type="Button" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/VBoxContainer/Control2/MarginContainer" unique_id=772950739]
-layout_mode = 2
-text = "Natures"
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer" unique_id=2093674761]
 layout_mode = 2
@@ -154,10 +154,10 @@ organisms_ui = NodePath("OrganismsUI")
 natures_ui = NodePath("NaturesUI")
 
 [node name="OrganismsUI" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells" unique_id=554714860 instance=ExtResource("3_pgpbf")]
+visible = false
 layout_mode = 1
 
 [node name="NaturesUI" parent="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells" unique_id=1997175771 instance=ExtResource("4_3bqjm")]
-visible = false
 layout_mode = 1
 
 [node name="PondView" type="Control" parent="HBoxContainer" unique_id=1185230820]
@@ -193,8 +193,8 @@ texture = ExtResource("1_3bqjm")
 [connection signal="spawned_organisms_algae" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" method="_on_resources_ui_spawned_organisms_algae"]
 [connection signal="spawned_organisms_critters" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" method="_on_resources_ui_spawned_organisms_critters"]
 [connection signal="spawned_organisms_mold" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" method="_on_resources_ui_spawned_organisms_mold"]
-[connection signal="pressed" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/VBoxContainer/Control/MarginContainer/OrganismsButton" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells" method="_on_organisms_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/VBoxContainer/Control2/MarginContainer/NaturesButton" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells" method="_on_natures_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/SpellTabsButtons/Natures/MarginContainer/NaturesButton" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells" method="_on_natures_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/SpellTabs/SpellTabsButtons/Organisms/MarginContainer/OrganismsButton" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells" method="_on_organisms_button_pressed"]
 [connection signal="algae_button_pressed" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" method="_on_organisms_ui_algae_button_pressed"]
 [connection signal="critters_button_pressed" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" method="_on_organisms_ui_critters_button_pressed"]
 [connection signal="mold_button_pressed" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" method="_on_organisms_ui_mold_button_pressed"]

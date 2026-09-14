@@ -35,6 +35,7 @@ window/stretch/aspect="expand"
 
 folder_colors={
 "res://audio/": "blue",
+"res://fonts/": "gray",
 "res://images/": "red",
 "res://scenes/": "yellow",
 "res://scripts/": "green"
@@ -43,6 +44,10 @@ folder_colors={
 [filesystem]
 
 import/blender/enabled=false
+
+[gui]
+
+theme/custom_font="uid://bgfefkd1jagv6"
 
 [physics]
 
