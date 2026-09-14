@@ -8,21 +8,24 @@ var STARTING_AMOUNT : int = 10
 @export var timerFast : Timer
 @export var timerSlow : Timer
 
+var pondLevel : int = 0
+
 ## ARCANA
 var arcana : int = STARTING_AMOUNT
 var arcanaDeltaSlow : int = 1
 var arcanaDeltaStandard : int = 0
 var arcanaDeltaFast : int = 0
+var arcanaLimit : int = 10 + pondLevel * 10
 @export var arcanaCountLabel : Label
 @export var arcanaDeltaAverageLabel : Label
 
 ## SUNLIGHT
-var sunlight : int = STARTING_AMOUNT
-var sunlightDeltaSlow : int = 0
-var sunlightDeltaStandard : int = 0
-var sunlightDeltaFast : int = 1
-@export var sunlightCountLabel : Label
-@export var sunlightDeltaAverageLabel : Label
+var light : int = STARTING_AMOUNT
+var lightDeltaSlow : int = 0
+var lightDeltaStandard : int = 0
+var lightDeltaFast : int = 1
+@export var lightCountLabel : Label
+@export var lightDeltaAverageLabel : Label
 
 ## NITROGEN
 var nitrogen : int = STARTING_AMOUNT
@@ -78,7 +81,7 @@ var organisms_critters : int = 0
 
 
 signal depleted_arcana
-signal depleted_sunlight
+signal depleted_light
 signal depleted_nitrogen
 signal depleted_carbon
 signal depleted_oxygen
@@ -113,7 +116,7 @@ func update_arcana_count_label() -> void:
 ## Generates resources every minute
 func generate_resources_slow() -> void:
 	arcana += arcanaDeltaSlow
-	sunlight += sunlightDeltaSlow
+	light += lightDeltaSlow
 	nitrogen += nitrogenDeltaSlow
 	carbon += carbonDeltaSlow
 	oxygen += oxygenDeltaSlow
@@ -126,7 +129,7 @@ func generate_resources_slow() -> void:
 ## Generates resources every 6 seconds
 func generate_resources_standard() -> void:
 	arcana += arcanaDeltaStandard
-	sunlight += sunlightDeltaStandard
+	light += lightDeltaStandard
 	nitrogen += nitrogenDeltaStandard
 	carbon += carbonDeltaStandard
 	oxygen += oxygenDeltaStandard
@@ -139,7 +142,7 @@ func generate_resources_standard() -> void:
 ## Generates resources every second
 func generate_resources_fast() -> void:
 	arcana += arcanaDeltaFast
-	sunlight += sunlightDeltaFast
+	light += lightDeltaFast
 	nitrogen += nitrogenDeltaFast
 	carbon += carbonDeltaFast
 	oxygen += oxygenDeltaFast
@@ -154,9 +157,9 @@ func floor_resource_values() -> void:
 	if arcana < 0:
 		depleted_arcana.emit(arcana)
 		arcana = 0
-	if sunlight < 0:
-		depleted_sunlight.emit(sunlight)
-		sunlight = 0
+	if light < 0:
+		depleted_light.emit(light)
+		light = 0
 	if nitrogen < 0:
 		depleted_nitrogen.emit(nitrogen)
 		nitrogen = 0
@@ -177,7 +180,7 @@ func floor_resource_values() -> void:
 ## Updates the UI
 func update_resource_count_labels() -> void:
 	arcanaCountLabel.text = "%s" %arcana
-	sunlightCountLabel.text = "%s" %sunlight
+	lightCountLabel.text = "%s" %light
 	nitrogenCountLabel.text = "%s" %nitrogen
 	carbonCountLabel.text = "%s" %carbon
 	oxygenCountLabel.text = "%s" %oxygen
@@ -186,15 +189,15 @@ func update_resource_count_labels() -> void:
 	
 
 func update_resource_generations() -> void:
-	## Natures
+	# Natures
 	arcanaDeltaSlow = 1
 	arcanaDeltaStandard = 0
 	arcanaDeltaFast = 0
-	sunlightDeltaSlow = natures_lights
-	sunlightDeltaStandard = 0
-	sunlightDeltaFast = 1
-	nitrogenDeltaSlow = natures_pebbles
-	nitrogenDeltaStandard = 0
+	lightDeltaSlow = 0
+	lightDeltaStandard = 0
+	lightDeltaFast = 1 + natures_lights
+	nitrogenDeltaSlow = 0
+	nitrogenDeltaStandard = natures_pebbles
 	nitrogenDeltaFast = 0
 	carbonDeltaSlow = 0
 	carbonDeltaStandard = 0
@@ -202,35 +205,41 @@ func update_resource_generations() -> void:
 	oxygenDeltaSlow = 0
 	oxygenDeltaStandard = 0
 	oxygenDeltaFast = 0
-	detritusDeltaSlow = natures_twigs
-	detritusDeltaStandard = 0
+	detritusDeltaSlow = 0
+	detritusDeltaStandard = natures_twigs
 	detritusDeltaFast = 0
 	foodDeltaSlow = 0
 	foodDeltaStandard = 0
 	foodDeltaFast = 0
 	
 	
-	## Total Organisms :: add '/ log(10)' for base 10
-	arcanaDeltaSlow += log(max(organisms_total, 1))
+	# Total Organisms :: add '/ log(10)' for base 10
+	var safe_organisms_total : int = max(organisms_total, 1)
+	arcanaDeltaSlow += int(log(safe_organisms_total))
 	
-	## Algae
-	sunlightDeltaStandard -= organisms_algae
+	# Algae
+	lightDeltaStandard -= organisms_algae
 	nitrogenDeltaSlow -= organisms_algae
-	carbonDeltaStandard -= organisms_algae
+	carbonDeltaSlow -= organisms_algae
 	oxygenDeltaStandard += organisms_algae
 	foodDeltaStandard += organisms_algae
 	
-	## Mold
+	# Mold
 	detritusDeltaStandard -= organisms_mold
 	oxygenDeltaStandard -= organisms_mold
 	carbonDeltaStandard += organisms_mold
 	nitrogenDeltaStandard += organisms_mold
 	
-	## Critters
+	# Critters
 	foodDeltaFast -= organisms_critters
+	foodDeltaSlow += organisms_critters
 	oxygenDeltaStandard -= organisms_critters
 	carbonDeltaStandard += organisms_critters
 	detritusDeltaStandard += organisms_critters
+	
+	# Clamps
+	if arcana > arcanaLimit:
+		arcana = arcanaLimit
 	
 	update_delta_average_labels()
 	
@@ -259,7 +268,7 @@ func update_delta_average_labels() -> void:
 		if delta == 0:
 			color = Color(1,1,1)
 	else: 
-		text = "-"
+		text = ""
 		color = Color(1,0,0)
 	if delta == int(delta):
 		text += "%s" %(int(delta))
@@ -269,21 +278,21 @@ func update_delta_average_labels() -> void:
 	arcanaDeltaAverageLabel.text = text
 	
 	# Sunlight
-	delta = get_delta_average(sunlightDeltaStandard,sunlightDeltaFast,sunlightDeltaSlow)
+	delta = get_delta_average(lightDeltaStandard,lightDeltaFast,lightDeltaSlow)
 	if delta >= 0:
 		text = "+"
 		color = Color(0,1,0)
 		if delta == 0:
 			color = Color(1,1,1)
 	else: 
-		text = "-"
+		text = ""
 		color = Color(1,0,0)
 	if delta == int(delta):
 		text += "%s" %(int(delta))
 	else:
 		text += "%s" %delta
-	sunlightDeltaAverageLabel.set("theme_override_colors/font_color", color)
-	sunlightDeltaAverageLabel.text = text
+	lightDeltaAverageLabel.set("theme_override_colors/font_color", color)
+	lightDeltaAverageLabel.text = text
 	
 	# Nitrogen
 	delta = get_delta_average(nitrogenDeltaStandard,nitrogenDeltaFast,nitrogenDeltaSlow)
@@ -293,7 +302,7 @@ func update_delta_average_labels() -> void:
 		if delta == 0:
 			color = Color(1,1,1)
 	else: 
-		text = "-"
+		text = ""
 		color = Color(1,0,0)
 	if delta == int(delta):
 		text += "%s" %(int(delta))
@@ -310,7 +319,7 @@ func update_delta_average_labels() -> void:
 		if delta == 0:
 			color = Color(1,1,1)
 	else: 
-		text = "-"
+		text = ""
 		color = Color(1,0,0)
 	if delta == int(delta):
 		text += "%s" %(int(delta))
@@ -327,7 +336,7 @@ func update_delta_average_labels() -> void:
 		if delta == 0:
 			color = Color(1,1,1)
 	else: 
-		text = "-"
+		text = ""
 		color = Color(1,0,0)
 	if delta == int(delta):
 		text += "%s" %(int(delta))
@@ -344,7 +353,7 @@ func update_delta_average_labels() -> void:
 		if delta == 0:
 			color = Color(1,1,1)
 	else: 
-		text = "-"
+		text = ""
 		color = Color(1,0,0)
 	if delta == int(delta):
 		text += "%s" %(int(delta))
@@ -361,7 +370,7 @@ func update_delta_average_labels() -> void:
 		if delta == 0:
 			color = Color(1,1,1)
 	else: 
-		text = "-"
+		text = ""
 		color = Color(1,0,0)
 	if delta == int(delta):
 		text += "%s" %(int(delta))

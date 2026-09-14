@@ -14,7 +14,7 @@ subpixel_positioning = 0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nagar"]
 load_path = "res://.godot/imported/N2 icon.png-7e77622e5553b7d44baebfd82e6018b0.ctex"
 
-[node name="ResourcesUI" type="Control" unique_id=1844071280 node_paths=PackedStringArray("timerStandard", "timerFast", "timerSlow", "arcanaCountLabel", "arcanaDeltaAverageLabel", "sunlightCountLabel", "sunlightDeltaAverageLabel", "nitrogenCountLabel", "nitrogenDeltaAverageLabel", "carbonCountLabel", "carbonDeltaAverageLabel", "oxygenCountLabel", "oxygenDeltaAverageLabel", "detritusCountLabel", "detritusDeltaAverageLabel", "foodCountLabel", "foodDeltaAverageLabel")]
+[node name="ResourcesUI" type="Control" unique_id=1844071280 node_paths=PackedStringArray("timerStandard", "timerFast", "timerSlow", "arcanaCountLabel", "arcanaDeltaAverageLabel", "lightCountLabel", "lightDeltaAverageLabel", "nitrogenCountLabel", "nitrogenDeltaAverageLabel", "carbonCountLabel", "carbonDeltaAverageLabel", "oxygenCountLabel", "oxygenDeltaAverageLabel", "detritusCountLabel", "detritusDeltaAverageLabel", "foodCountLabel", "foodDeltaAverageLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,8 +27,8 @@ timerFast = NodePath("TimerFast")
 timerSlow = NodePath("TimerSlow")
 arcanaCountLabel = NodePath("MarginContainer/VBoxContainer/Arcana/MarginContainer/HBoxContainer/MarginContainer2/Count")
 arcanaDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Arcana/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
-sunlightCountLabel = NodePath("MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer2/Count")
-sunlightDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
+lightCountLabel = NodePath("MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer/MarginContainer2/Count")
+lightDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
 nitrogenCountLabel = NodePath("MarginContainer/VBoxContainer/Nitrogen/MarginContainer/HBoxContainer/MarginContainer2/Count")
 nitrogenDeltaAverageLabel = NodePath("MarginContainer/VBoxContainer/Nitrogen/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/Delta")
 carbonCountLabel = NodePath("MarginContainer/VBoxContainer/Carbon/MarginContainer/HBoxContainer/MarginContainer2/Count")
@@ -154,11 +154,11 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Sunlight" type="Control" parent="MarginContainer/VBoxContainer" unique_id=948301402]
+[node name="Light" type="Control" parent="MarginContainer/VBoxContainer" unique_id=948301402]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Sunlight" unique_id=574799301]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Light" unique_id=574799301]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,16 +171,16 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer" unique_id=451954200]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Light/MarginContainer" unique_id=451954200]
 layout_mode = 2
 
-[node name="Icon" type="Control" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer" unique_id=1901150653]
+[node name="Icon" type="Control" parent="MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer" unique_id=1901150653]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/Icon" unique_id=1438477282]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer/Icon" unique_id=1438477282]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -190,11 +190,11 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sun" type="Sprite2D" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/Icon/Control" unique_id=1008024651]
+[node name="Sun" type="Sprite2D" parent="MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer/Icon/Control" unique_id=1008024651]
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("2_xmyee")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer" unique_id=622459224]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer" unique_id=622459224]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 4
@@ -202,10 +202,10 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer" unique_id=1549877678]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer/MarginContainer" unique_id=1549877678]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=686120574]
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=686120574]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -213,10 +213,10 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = SubResource("SystemFont_est24")
 theme_override_font_sizes/font_size = 24
-text = "Sunlight"
+text = "Light"
 vertical_alignment = 1
 
-[node name="Delta" type="Label" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2135563043]
+[node name="Delta" type="Label" parent="MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2135563043]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -228,7 +228,7 @@ text = "+0.01"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer" unique_id=1486187621]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer" unique_id=1486187621]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 4
@@ -236,7 +236,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Count" type="Label" parent="MarginContainer/VBoxContainer/Sunlight/MarginContainer/HBoxContainer/MarginContainer2" unique_id=926314899]
+[node name="Count" type="Label" parent="MarginContainer/VBoxContainer/Light/MarginContainer/HBoxContainer/MarginContainer2" unique_id=926314899]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
