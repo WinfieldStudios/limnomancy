@@ -13,8 +13,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f2jb3")
 twigs_count_label = NodePath("ScrollContainer/VBoxContainer/Twigs/HBoxContainer/MarginContainer/Count")
-pebbles_count_label = NodePath("ScrollContainer/VBoxContainer/Mold/HBoxContainer/MarginContainer/Count")
-lights_count_label = NodePath("ScrollContainer/VBoxContainer/Critters/HBoxContainer/MarginContainer/Count")
+pebbles_count_label = NodePath("ScrollContainer/VBoxContainer/Pebbles/HBoxContainer/MarginContainer/Count")
+lights_count_label = NodePath("ScrollContainer/VBoxContainer/Light Cantrips/HBoxContainer/MarginContainer/Count")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=537001099]
 layout_mode = 1
@@ -29,6 +29,57 @@ theme = SubResource("Theme_iexyc")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Light Cantrips" type="MarginContainer" parent="ScrollContainer/VBoxContainer" unique_id=1406292892]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Light Cantrips" unique_id=1025778147]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Light Cantrips/HBoxContainer" unique_id=2106295323]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Count" type="Label" parent="ScrollContainer/VBoxContainer/Light Cantrips/HBoxContainer/MarginContainer" unique_id=1761673313]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Light Cantrips/HBoxContainer" unique_id=152569645]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Light Cantrips/HBoxContainer/MarginContainer3" unique_id=1706422742]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Light Cantrips"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Light Cantrips/HBoxContainer" unique_id=936913915]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="LightsButton" type="Button" parent="ScrollContainer/VBoxContainer/Light Cantrips/HBoxContainer/MarginContainer2" unique_id=255790241]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SPAWN: [1 MANA]"
 
 [node name="Twigs" type="MarginContainer" parent="ScrollContainer/VBoxContainer" unique_id=1613741141]
 layout_mode = 2
@@ -81,16 +132,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "SPAWN: [1 MANA]"
 
-[node name="Mold" type="MarginContainer" parent="ScrollContainer/VBoxContainer" unique_id=361001969]
+[node name="Pebbles" type="MarginContainer" parent="ScrollContainer/VBoxContainer" unique_id=361001969]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Mold" unique_id=581161456]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Pebbles" unique_id=581161456]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Mold/HBoxContainer" unique_id=1726146190]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Pebbles/HBoxContainer" unique_id=1726146190]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 4
@@ -98,13 +149,13 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Count" type="Label" parent="ScrollContainer/VBoxContainer/Mold/HBoxContainer/MarginContainer" unique_id=858377046]
+[node name="Count" type="Label" parent="ScrollContainer/VBoxContainer/Pebbles/HBoxContainer/MarginContainer" unique_id=858377046]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 vertical_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Mold/HBoxContainer" unique_id=611919425]
+[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Pebbles/HBoxContainer" unique_id=611919425]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 4
@@ -112,14 +163,14 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Mold/HBoxContainer/MarginContainer3" unique_id=882174980]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Pebbles/HBoxContainer/MarginContainer3" unique_id=882174980]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pebbles"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Mold/HBoxContainer" unique_id=1496233672]
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Pebbles/HBoxContainer" unique_id=1496233672]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 4
@@ -127,62 +178,11 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="PebblesButton" type="Button" parent="ScrollContainer/VBoxContainer/Mold/HBoxContainer/MarginContainer2" unique_id=662227062]
+[node name="PebblesButton" type="Button" parent="ScrollContainer/VBoxContainer/Pebbles/HBoxContainer/MarginContainer2" unique_id=662227062]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "SPAWN: [1 MANA]"
 
-[node name="Critters" type="MarginContainer" parent="ScrollContainer/VBoxContainer" unique_id=1406292892]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Critters" unique_id=1025778147]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Critters/HBoxContainer" unique_id=2106295323]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Count" type="Label" parent="ScrollContainer/VBoxContainer/Critters/HBoxContainer/MarginContainer" unique_id=1761673313]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "0"
-vertical_alignment = 1
-
-[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Critters/HBoxContainer" unique_id=152569645]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Critters/HBoxContainer/MarginContainer3" unique_id=1706422742]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Light Cantrips"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer/Critters/HBoxContainer" unique_id=936913915]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="LightsButton" type="Button" parent="ScrollContainer/VBoxContainer/Critters/HBoxContainer/MarginContainer2" unique_id=255790241]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "SPAWN: [1 MANA]"
-
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Light Cantrips/HBoxContainer/MarginContainer2/LightsButton" to="." method="_on_lights_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Twigs/HBoxContainer/MarginContainer2/TwigsButton" to="." method="_on_twigs_button_pressed"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/Mold/HBoxContainer/MarginContainer2/PebblesButton" to="." method="_on_pebbles_button_pressed"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/Critters/HBoxContainer/MarginContainer2/LightsButton" to="." method="_on_lights_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Pebbles/HBoxContainer/MarginContainer2/PebblesButton" to="." method="_on_pebbles_button_pressed"]

@@ -2,7 +2,7 @@ class_name ResourceGenerator
 extends Control
 
 
-var STARTING_AMOUNT : int = 10
+var STARTING_AMOUNT : int = 0
 
 @export var timerStandard : Timer
 @export var timerFast : Timer
@@ -11,11 +11,11 @@ var STARTING_AMOUNT : int = 10
 var pondLevel : int = 0
 
 ## ARCANA
-var arcana : int = STARTING_AMOUNT
+var arcanaLimit : int = 10 + pondLevel * 10
+var arcana : int = arcanaLimit
 var arcanaDeltaSlow : int = 1
 var arcanaDeltaStandard : int = 0
 var arcanaDeltaFast : int = 0
-var arcanaLimit : int = 10 + pondLevel * 10
 @export var arcanaCountLabel : Label
 @export var arcanaDeltaAverageLabel : Label
 
@@ -236,6 +236,7 @@ func update_resource_generations() -> void:
 	oxygenDeltaStandard -= organisms_critters
 	carbonDeltaStandard += organisms_critters
 	detritusDeltaStandard += organisms_critters
+	arcanaDeltaStandard += int(log(organisms_critters + 1))
 	
 	# Clamps
 	if arcana > arcanaLimit:
@@ -265,6 +266,8 @@ func update_delta_average_labels() -> void:
 	if delta >= 0:
 		text = "+"
 		color = Color(0,1,0)
+		if arcana >= arcanaLimit:
+			delta = 0
 		if delta == 0:
 			color = Color(1,1,1)
 	else: 
