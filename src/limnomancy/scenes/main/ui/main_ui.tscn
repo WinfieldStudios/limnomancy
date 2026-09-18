@@ -180,10 +180,11 @@ position = Vector2(26.999973, 7.000004)
 scale = Vector2(0.52916664, 0.90000004)
 texture = ExtResource("1_3bqjm")
 
+[connection signal="depleted_Compost" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" method="_on_depleted_compost"]
 [connection signal="depleted_arcana" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" method="_on_resources_ui_depleted_arcana"]
 [connection signal="depleted_carbon" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" method="_on_resources_ui_depleted_carbon"]
-[connection signal="depleted_detritus" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" method="_on_resources_ui_depleted_detritus"]
 [connection signal="depleted_food" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" method="_on_resources_ui_depleted_food"]
+[connection signal="depleted_light" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" method="_on_depleted_light"]
 [connection signal="depleted_nitrogen" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" method="_on_resources_ui_depleted_nitrogen"]
 [connection signal="depleted_oxygen" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/OrganismsUI" method="_on_resources_ui_depleted_oxygen"]
 [connection signal="spawned_natures_lights" from="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Menus/VBoxContainer/Resources/ResourcesUI" to="HBoxContainer/MenuView/MarginContainer/HBoxContainer/Spells/NaturesUI" method="_on_resources_ui_spawned_natures_lights"]

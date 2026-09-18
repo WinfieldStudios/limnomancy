@@ -51,13 +51,13 @@ var oxygenDeltaFast : int = 0
 @export var oxygenCountLabel : Label
 @export var oxygenDeltaAverageLabel : Label
 
-## DETRITUS
-var detritus : int = STARTING_AMOUNT
-var detritusDeltaSlow : int = 0
-var detritusDeltaStandard : int = 0
-var detritusDeltaFast : int = 0
-@export var detritusCountLabel : Label
-@export var detritusDeltaAverageLabel : Label
+## Compost
+var Compost : int = STARTING_AMOUNT
+var CompostDeltaSlow : int = 0
+var CompostDeltaStandard : int = 0
+var CompostDeltaFast : int = 0
+@export var CompostCountLabel : Label
+@export var CompostDeltaAverageLabel : Label
 
 ## FOOD
 var food : int = STARTING_AMOUNT
@@ -85,7 +85,7 @@ signal depleted_light
 signal depleted_nitrogen
 signal depleted_carbon
 signal depleted_oxygen
-signal depleted_detritus
+signal depleted_Compost
 signal depleted_food
 
 signal spawned_organisms_algae
@@ -120,7 +120,7 @@ func generate_resources_slow() -> void:
 	nitrogen += nitrogenDeltaSlow
 	carbon += carbonDeltaSlow
 	oxygen += oxygenDeltaSlow
-	detritus += detritusDeltaSlow
+	Compost += CompostDeltaSlow
 	food += foodDeltaSlow
 	floor_resource_values()
 	update_resource_count_labels()
@@ -133,7 +133,7 @@ func generate_resources_standard() -> void:
 	nitrogen += nitrogenDeltaStandard
 	carbon += carbonDeltaStandard
 	oxygen += oxygenDeltaStandard
-	detritus += detritusDeltaStandard
+	Compost += CompostDeltaStandard
 	food += foodDeltaStandard
 	floor_resource_values()
 	update_resource_count_labels()
@@ -146,7 +146,7 @@ func generate_resources_fast() -> void:
 	nitrogen += nitrogenDeltaFast
 	carbon += carbonDeltaFast
 	oxygen += oxygenDeltaFast
-	detritus += detritusDeltaFast
+	Compost += CompostDeltaFast
 	food += foodDeltaFast
 	floor_resource_values()
 	update_resource_count_labels()
@@ -169,9 +169,9 @@ func floor_resource_values() -> void:
 	if oxygen < 0:
 		depleted_oxygen.emit(oxygen)
 		oxygen = 0
-	if detritus < 0:
-		depleted_detritus.emit(detritus)
-		detritus = 0
+	if Compost < 0:
+		depleted_Compost.emit(Compost)
+		Compost = 0
 	if food < 0:
 		depleted_food.emit(food)
 		food = 0
@@ -184,7 +184,7 @@ func update_resource_count_labels() -> void:
 	nitrogenCountLabel.text = "%s" %nitrogen
 	carbonCountLabel.text = "%s" %carbon
 	oxygenCountLabel.text = "%s" %oxygen
-	detritusCountLabel.text = "%s" %detritus
+	CompostCountLabel.text = "%s" %Compost
 	foodCountLabel.text = "%s" %food
 	
 
@@ -205,9 +205,9 @@ func update_resource_generations() -> void:
 	oxygenDeltaSlow = 0
 	oxygenDeltaStandard = 0
 	oxygenDeltaFast = 0
-	detritusDeltaSlow = 0
-	detritusDeltaStandard = natures_twigs
-	detritusDeltaFast = 0
+	CompostDeltaSlow = 0
+	CompostDeltaStandard = natures_twigs
+	CompostDeltaFast = 0
 	foodDeltaSlow = 0
 	foodDeltaStandard = 0
 	foodDeltaFast = 0
@@ -225,7 +225,7 @@ func update_resource_generations() -> void:
 	foodDeltaStandard += organisms_algae
 	
 	# Mold
-	detritusDeltaStandard -= organisms_mold
+	CompostDeltaStandard -= organisms_mold
 	oxygenDeltaStandard -= organisms_mold
 	carbonDeltaStandard += organisms_mold
 	nitrogenDeltaStandard += organisms_mold
@@ -235,7 +235,7 @@ func update_resource_generations() -> void:
 	foodDeltaSlow += organisms_critters
 	oxygenDeltaStandard -= organisms_critters
 	carbonDeltaStandard += organisms_critters
-	detritusDeltaStandard += organisms_critters
+	CompostDeltaStandard += organisms_critters
 	arcanaDeltaStandard += int(log(organisms_critters + 1))
 	
 	# Clamps
@@ -348,8 +348,8 @@ func update_delta_average_labels() -> void:
 	oxygenDeltaAverageLabel.set("theme_override_colors/font_color", color)
 	oxygenDeltaAverageLabel.text = text
 	
-	# Detritus
-	delta = get_delta_average(detritusDeltaStandard,detritusDeltaFast,detritusDeltaSlow)
+	# Compost
+	delta = get_delta_average(CompostDeltaStandard,CompostDeltaFast,CompostDeltaSlow)
 	if delta >= 0:
 		text = "+"
 		color = Color(0,1,0)
@@ -362,8 +362,8 @@ func update_delta_average_labels() -> void:
 		text += "%s" %(int(delta))
 	else:
 		text += "%s" %delta
-	detritusDeltaAverageLabel.set("theme_override_colors/font_color", color)
-	detritusDeltaAverageLabel.text = text
+	CompostDeltaAverageLabel.set("theme_override_colors/font_color", color)
+	CompostDeltaAverageLabel.text = text
 	
 	# Food
 	delta = get_delta_average(foodDeltaStandard,foodDeltaFast,foodDeltaSlow)
@@ -469,3 +469,11 @@ func _on_natures_ui_update_counts(total_natures:int,twigs:int, pebbles:int, ligh
 	natures_pebbles = pebbles
 	natures_lights = lights
 	update_resource_generations()
+
+
+func _on_depleted_compost() -> void:
+	pass # Replace with function body.
+
+
+func _on_depleted_light() -> void:
+	pass # Replace with function body.

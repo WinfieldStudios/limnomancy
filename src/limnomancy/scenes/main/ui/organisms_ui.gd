@@ -13,13 +13,13 @@ var algae_cost : int = 1
 @export var algae_count_label : Label
 signal algae_button_pressed
 
-## Saprotrophs - Consumes Detritus & Oxygen; makes Nitrogen & Carbon.
+## Saprotrophs - Consumes Compost & Oxygen; makes Nitrogen & Carbon.
 var mold : int = 0
 var mold_cost : int = 1
 @export var mold_count_label : Label
 signal mold_button_pressed
 
-## Heterotrophs - Consumes Food & Oxygen; makes Detritus & Carbon.
+## Heterotrophs - Consumes Food & Oxygen; makes Compost & Carbon.
 var critters : int = 0
 var critters_cost : int = 1
 @export var critters_count_label : Label
@@ -115,7 +115,7 @@ func _on_resources_ui_depleted_food(subtrahend:int) -> void:
 	starve_heterotrophs(subtrahend)
 
 
-func _on_resources_ui_depleted_detritus(subtrahend:int) -> void:
+func _on_resources_ui_depleted_Compost(subtrahend:int) -> void:
 	starve_saprotrophs(subtrahend)
 
 
